@@ -75,3 +75,12 @@ const overlayMaps = {
 
 // Add layer control to the map
 L.control.layers(null, overlayMaps).addTo(map);
+
+// Function to show coordinates under the cursor
+function showCoordinates(e) {
+  const coordinates = e.latlng;
+  document.getElementById('coordinates').innerHTML = `Latitude: ${coordinates.lat.toFixed(4)}, Longitude: ${coordinates.lng.toFixed(4)}`;
+}
+
+// Add event listener for mousemove to show coordinates
+map.on('mousemove', showCoordinates);
