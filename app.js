@@ -49,28 +49,28 @@ function addMarkers(objects, layer) {
 }
 
 // Create layer groups for each type of game object
-const ScoutsLayer = L.layerGroup();
-const IronLayer = L.layerGroup();
-const SaltLayer = L.layerGroup();
-const CopperLayer = L.layerGroup();
-const TinLayer = L.layerGroup();
-const SulfurLayer = L.layerGroup();
+const scoutsLayer = L.layerGroup();
+const ironLayer = L.layerGroup();
+const saltLayer = L.layerGroup();
+const copperLayer = L.layerGroup();
+const tinLayer = L.layerGroup();
+const sulfurLayer = L.layerGroup();
 // Add markers to respective layers
-addMarkers(gameObjects.Scouts, enemyLayer);
-addMarkers(gameObjects.Iron, itemLayer);
-addMarkers(gameObjects.Salt, enemyLayer);
-addMarkers(gameObjects.Copper, itemLayer);
-addMarkers(gameObjects.Tin, enemyLayer);
-addMarkers(gameObjects.Sulfur, itemLayer);
+addMarkers(gameObjects.scouts, enemyLayer);
+addMarkers(gameObjects.iron, itemLayer);
+addMarkers(gameObjects.salt, enemyLayer);
+addMarkers(gameObjects.copper, itemLayer);
+addMarkers(gameObjects.tin, enemyLayer);
+addMarkers(gameObjects.sulfur, itemLayer);
 
 // Create an object to store the layers
 const overlayMaps = {
-  'Scouts': enemyLayer,
-  'Iron': itemLayer,
-  'Salt': enemyLayer,
-  'Copper': itemLayer,
-  'Tin': enemyLayer,
-  'Sulfur': itemLayer,
+  'scouts': enemyLayer,
+  'iron': itemLayer,
+  'salt': enemyLayer,
+  'copper': itemLayer,
+  'tin': enemyLayer,
+  'sulfur': itemLayer,
 };
 
 // Add layer control to the map
