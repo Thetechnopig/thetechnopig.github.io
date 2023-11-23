@@ -35,10 +35,10 @@ const gameObjects = {
 // Initialize Leaflet map
 const map = L.map('map').setView([37.7749, -122.4194], 13);
 
-// Add custom background tile layer with an image
-L.tileLayer('https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png', {
-  attribution: '&copy; OpenStreetMap contributors',
-}).addTo(map);
+// Add static image as the background
+const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png'; // Replace with your image URL
+const imageBounds = [[37.7749, -122.4194], [37.7849, -122.4294]]; // Replace with your image bounds
+L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
 // Function to add markers for game objects
 function addMarkers(objects, layer) {
