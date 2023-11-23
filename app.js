@@ -56,12 +56,12 @@ const copperLayer = L.layerGroup();
 const tinLayer = L.layerGroup();
 const sulfurLayer = L.layerGroup();
 // Add markers to respective layers
-addMarkers(gameObjects.scouts, enemyLayer);
-addMarkers(gameObjects.iron, itemLayer);
-addMarkers(gameObjects.salt, enemyLayer);
-addMarkers(gameObjects.copper, itemLayer);
-addMarkers(gameObjects.tin, enemyLayer);
-addMarkers(gameObjects.sulfur, itemLayer);
+addMarkers(gameObjects.scouts, scoutsLayer);
+addMarkers(gameObjects.iron, ironLayer);
+addMarkers(gameObjects.salt, saltLayer);
+addMarkers(gameObjects.copper, copperLayer);
+addMarkers(gameObjects.tin, tinLayer);
+addMarkers(gameObjects.sulfur, sulfurLayer);
 
 // Create an object to store the layers
 const overlayMaps = {
