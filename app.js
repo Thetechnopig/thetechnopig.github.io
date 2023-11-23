@@ -6,28 +6,28 @@ const gameObjects = {
     // Add more enemies as needed
   ],
   Iron: [
-    { name: 'Item1', lat: 37.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 17.7849, lon: -122.4194 },
+    { name: 'Item2', lat: 17.7949, lon: -122.4194 },
     // Add more items as needed
   ],
   Salt: [
-    { name: 'Item1', lat: 37.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 27.7849, lon: -122.4194 },
+    { name: 'Item2', lat: 27.7949, lon: -122.4194 },
     // Add more items as needed
   ],
   Copper: [
-    { name: 'Item1', lat: 37.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 37.7849, lon: -102.4194 },
+    { name: 'Item2', lat: 37.7949, lon: -102.4194 },
     // Add more items as needed
   ],
   Tin: [
-    { name: 'Item1', lat: 37.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 37.7849, lon: -92.4194 },
+    { name: 'Item2', lat: 37.7949, lon: -92.4194 },
     // Add more items as needed
   ],
   Sulfur: [
-    { name: 'Item1', lat: 37.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 37.7849, lon: -82.4194 },
+    { name: 'Item2', lat: 37.7949, lon: -82.4194 },
     // Add more items as needed
   ],
 };
@@ -49,17 +49,28 @@ function addMarkers(objects, layer) {
 }
 
 // Create layer groups for each type of game object
-const enemyLayer = L.layerGroup();
-const itemLayer = L.layerGroup();
-
+const ScoutsLayer = L.layerGroup();
+const IronLayer = L.layerGroup();
+const SaltLayer = L.layerGroup();
+const CopperLayer = L.layerGroup();
+const TinLayer = L.layerGroup();
+const SulfurLayer = L.layerGroup();
 // Add markers to respective layers
-addMarkers(gameObjects.enemies, enemyLayer);
-addMarkers(gameObjects.items, itemLayer);
+addMarkers(gameObjects.Scouts, enemyLayer);
+addMarkers(gameObjects.Iron, itemLayer);
+addMarkers(gameObjects.Salt, enemyLayer);
+addMarkers(gameObjects.Copper, itemLayer);
+addMarkers(gameObjects.Tin, enemyLayer);
+addMarkers(gameObjects.Sulfur, itemLayer);
 
 // Create an object to store the layers
 const overlayMaps = {
-  'Enemies': enemyLayer,
-  'Items': itemLayer,
+  'Scouts': enemyLayer,
+  'Iron': itemLayer,
+  'Salt': enemyLayer,
+  'Copper': itemLayer,
+  'Tin': enemyLayer,
+  'Sulfur': itemLayer,
 };
 
 // Add layer control to the map
