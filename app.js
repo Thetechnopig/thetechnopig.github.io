@@ -1,31 +1,31 @@
 // Sample data for different game objects
 const gameObjects = {
-  Scouts: [
+  scouts: [
     { name: 'Enemy1', lat: 37.7749, lon: -122.4194 },
     { name: 'Enemy2', lat: 37.7749, lon: -122.4294 },
     // Add more enemies as needed
   ],
-  Iron: [
+  iron: [
     { name: 'Item1', lat: 17.7849, lon: -122.4194 },
     { name: 'Item2', lat: 17.7949, lon: -122.4194 },
     // Add more items as needed
   ],
-  Salt: [
+  salt: [
     { name: 'Item1', lat: 27.7849, lon: -122.4194 },
     { name: 'Item2', lat: 27.7949, lon: -122.4194 },
     // Add more items as needed
   ],
-  Copper: [
+  copper: [
     { name: 'Item1', lat: 37.7849, lon: -102.4194 },
     { name: 'Item2', lat: 37.7949, lon: -102.4194 },
     // Add more items as needed
   ],
-  Tin: [
+  tin: [
     { name: 'Item1', lat: 37.7849, lon: -92.4194 },
     { name: 'Item2', lat: 37.7949, lon: -92.4194 },
     // Add more items as needed
   ],
-  Sulfur: [
+  sulfur: [
     { name: 'Item1', lat: 37.7849, lon: -82.4194 },
     { name: 'Item2', lat: 37.7949, lon: -82.4194 },
     // Add more items as needed
