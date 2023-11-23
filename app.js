@@ -65,12 +65,12 @@ addMarkers(gameObjects.sulfur, sulfurLayer);
 
 // Create an object to store the layers
 const overlayMaps = {
-  'scouts': enemyLayer,
-  'iron': itemLayer,
-  'salt': enemyLayer,
-  'copper': itemLayer,
-  'tin': enemyLayer,
-  'sulfur': itemLayer,
+  'scouts': scoutsLayer,
+  'iron': ironLayer,
+  'salt': saltLayer,
+  'copper': copperLayer,
+  'tin': tinLayer,
+  'sulfur': sulfurLayer,
 };
 
 // Add layer control to the map
