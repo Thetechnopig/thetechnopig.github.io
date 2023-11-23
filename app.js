@@ -15,8 +15,8 @@ const gameObjects = {
 // Initialize Leaflet map
 const map = L.map('map').setView([37.7749, -122.4194], 13);
 
-// Add base tile layer (you can use other tile layers)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// Add custom background tile layer with an image
+L.tileLayer('https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png', {
   attribution: '&copy; OpenStreetMap contributors',
 }).addTo(map);
 
