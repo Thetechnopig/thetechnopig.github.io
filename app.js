@@ -37,7 +37,7 @@ const map = L.map('map').setView([1014, 1062], 1);
 
 // Add static image as the background
 const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png?ex=65721eae&is=655fa9ae&hm=c990966c8edcd65c689a5a72177d6b5d98c4b83b2022a6fe196b2aec536eb8ea&'; // Replace with your image URL
-const imageBounds = [[0, 0], [2138, 2075]]; // Replace with your image bounds
+const imageBounds = [[1, 1945], [2137, 127]]; // Replace with your image bounds
 L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
 // Function to add markers for game objects
