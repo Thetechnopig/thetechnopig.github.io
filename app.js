@@ -1,8 +1,8 @@
 // Sample data for different game objects
 const gameObjects = {
   scouts: [
-    { name: 'Enemy1', lat: 37.7749, lon: -122.4194 },
-    { name: 'Enemy2', lat: 37.7749, lon: -122.4294 },
+    { name: 'Enemy1', lat: 10, lon: 10 },
+    { name: 'Enemy2', lat: 1000, lon: 1000 },
     // Add more enemies as needed
   ],
   iron: [
