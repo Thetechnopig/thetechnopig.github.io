@@ -5,6 +5,11 @@ const gameObjects = {
     { name: 'Enemy2', lat: 1000, lon: 1000 },
     // Add more enemies as needed
   ],
+  coal: [
+    { name: 'Enemy1', lat: -33.2846, lon: -85.2539 },
+    { name: 'Enemy2', lat: -27.9944, lon: -94.2188 },
+    // Add more enemies as needed
+  ],
   iron: [
     { name: 'Item1', lat: 17.7849, lon: 122.4194 },
     { name: 'Item2', lat: 17.7949, lon: 122.4194 },
@@ -62,6 +67,7 @@ function addMarkers(objects, layer) {
 
 // Create layer groups for each type of game object
 const scoutsLayer = L.layerGroup();
+const coalLayer = L.layerGroup();
 const ironLayer = L.layerGroup();
 const saltLayer = L.layerGroup();
 const copperLayer = L.layerGroup();
@@ -69,6 +75,7 @@ const tinLayer = L.layerGroup();
 const sulfurLayer = L.layerGroup();
 // Add markers to respective layers
 addMarkers(gameObjects.scouts, scoutsLayer);
+addMarkers(gameObjects.coal, scoutsLayer);
 addMarkers(gameObjects.iron, ironLayer);
 addMarkers(gameObjects.salt, saltLayer);
 addMarkers(gameObjects.copper, copperLayer);
@@ -78,6 +85,7 @@ addMarkers(gameObjects.sulfur, sulfurLayer);
 // Create an object to store the layers
 const overlayMaps = {
   'scouts': scoutsLayer,
+  'ooal': scoutsLayer,
   'iron': ironLayer,
   'salt': saltLayer,
   'copper': copperLayer,
