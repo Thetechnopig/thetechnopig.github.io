@@ -33,7 +33,7 @@ const gameObjects = {
 };
 
 // Initialize Leaflet map
-const map = L.map('map').setView([1014, 1062], 1);
+const map = L.map('map').setView([1014, 1062], 10);
 
 // Add static image as the background
 const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png'; // Replace with your image URL
