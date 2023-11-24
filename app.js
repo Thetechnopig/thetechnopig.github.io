@@ -6,28 +6,28 @@ const gameObjects = {
     // Add more enemies as needed
   ],
   iron: [
-    { name: 'Item1', lat: 17.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 17.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 17.7849, lon: 122.4194 },
+    { name: 'Item2', lat: 17.7949, lon: 122.4194 },
     // Add more items as needed
   ],
   salt: [
-    { name: 'Item1', lat: 27.7849, lon: -122.4194 },
-    { name: 'Item2', lat: 27.7949, lon: -122.4194 },
+    { name: 'Item1', lat: 27.7849, lon: 122.4194 },
+    { name: 'Item2', lat: 27.7949, lon: 122.4194 },
     // Add more items as needed
   ],
   copper: [
-    { name: 'Item1', lat: 37.7849, lon: -102.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -102.4194 },
+    { name: 'Item1', lat: 37.7849, lon: 102.4194 },
+    { name: 'Item2', lat: 37.7949, lon: 102.4194 },
     // Add more items as needed
   ],
   tin: [
-    { name: 'Item1', lat: 37.7849, lon: -92.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -92.4194 },
+    { name: 'Item1', lat: 37.7849, lon: 92.4194 },
+    { name: 'Item2', lat: 37.7949, lon: 92.4194 },
     // Add more items as needed
   ],
   sulfur: [
-    { name: 'Item1', lat: 37.7849, lon: -82.4194 },
-    { name: 'Item2', lat: 37.7949, lon: -82.4194 },
+    { name: 'Item1', lat: 37.7849, lon: 82.4194 },
+    { name: 'Item2', lat: 37.7949, lon: 82.4194 },
     // Add more items as needed
   ],
 };
