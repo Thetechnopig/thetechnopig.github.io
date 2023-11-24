@@ -45,8 +45,8 @@ const imageUrl = 'https://cdn.discordapp.com/attachments/528733870082883592/1177
 // Get the bounds of the entire map
 const mapBounds = map.getBounds();
 const imageBounds = [
-  [mapBounds.getNorth(), mapBounds.getWest()], // Adjust latitude and longitude for top-left corner
-  [mapBounds.getSouth(), mapBounds.getEast()], // Adjust latitude and longitude for bottom-right corner
+  [mapBounds.getNorth() + 100, mapBounds.getWest() - 100], // Adjust latitude and longitude for top-left corner
+  [mapBounds.getSouth() - 100, mapBounds.getEast() + 100], // Adjust latitude and longitude for bottom-right corner
 ];
 
 
