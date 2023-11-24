@@ -33,15 +33,15 @@ const gameObjects = {
 };
 
 // Initialize Leaflet map
-const map = L.map('map').setView([1014, 1062], 1);
+const map = L.map('map').setView([1014, 1062], 5);
 
 // Add static image as the background
 const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png'; // Replace with your image URL
 // Get the bounds of the entire map
 const mapBounds = map.getBounds();
 const imageBounds = [
-  [mapBounds.getNorth() + 2000, mapBounds.getWest() - 500], // Adjust latitude and longitude for top-left corner
-  [mapBounds.getSouth() - 1000, mapBounds.getEast() + 500], // Adjust latitude and longitude for bottom-right corner
+  [mapBounds.getNorth(), mapBounds.getWest()], // Adjust latitude and longitude for top-left corner
+  [mapBounds.getSouth(), mapBounds.getEast()], // Adjust latitude and longitude for bottom-right corner
 ];
 
 
