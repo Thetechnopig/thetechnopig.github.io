@@ -36,13 +36,14 @@ const gameObjects = {
 const map = L.map('map').setView([1014, 1062], 1);
 
 // Add static image as the background
-const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png?ex=65721eae&is=655fa9ae&hm=c990966c8edcd65c689a5a72177d6b5d98c4b83b2022a6fe196b2aec536eb8ea&'; // Replace with your image URL
+const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png'; // Replace with your image URL
 // Get the bounds of the entire map
 const mapBounds = map.getBounds();
 const imageBounds = [
-  [mapBounds.getNorth(), mapBounds.getWest()],
-  [mapBounds.getSouth(), mapBounds.getEast()]
+  [mapBounds.getNorth() + 100, mapBounds.getWest() - 100], // Adjust latitude and longitude for top-left corner
+  [mapBounds.getSouth() - 100, mapBounds.getEast() + 100], // Adjust latitude and longitude for bottom-right corner
 ];
+
 
 L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
