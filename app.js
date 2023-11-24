@@ -33,7 +33,12 @@ const gameObjects = {
 };
 
 // Initialize Leaflet map
-const map = L.map('map').setView([1014, 1062], 5);
+const map = L.map('map').setView([37.8, -96], 4);
+
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
 // Add static image as the background
 const imageUrl = 'https://cdn.discordapp.com/attachments/528733870082883592/1177698373134995587/map.png'; // Replace with your image URL
