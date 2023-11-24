@@ -33,11 +33,11 @@ const gameObjects = {
 };
 
 // Initialize Leaflet map
-const map = L.map('map').setView([1014, 1062], 15);
+const map = L.map('map').setView([1014, 1062], 1);
 
 // Add static image as the background
 const imageUrl = 'https://cdn.discordapp.com/attachments/1086411008316289154/1177331798921982002/Untitled-1.png'; // Replace with your image URL
-const imageBounds = [[1, 1], [2138, 2075]]; // Replace with your image bounds
+const imageBounds = [[0, 0], [2138, 2075]]; // Replace with your image bounds
 L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
 // Function to add markers for game objects
