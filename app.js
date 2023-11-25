@@ -56,7 +56,7 @@ const gameObjects = {
 };
 
 // Initialize Leaflet map
-const map = L.map('map').setView([37.8, -96], 4);
+const map = L.map('map').setView([23.4028, -54], 3);
 
 const osm = L.tileLayer('https://thetechnopig.github.io/assets/img/{x}/{y}.png', {
     maxZoom: 19,
