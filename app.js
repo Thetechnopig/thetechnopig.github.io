@@ -5,6 +5,24 @@ const gameObjects = {
     { name: 'Enemy2', lat: 1000, lon: 1000 },
     // Add more enemies as needed
   ],
+  ruins: [
+    { name: 'Beast', lat: 10, lon: 10 },
+    { name: 'Outcast', lat: 1000, lon: 1000 },
+    { name: 'Enemy1', lat: 10, lon: 10 },
+    { name: 'Enemy2', lat: 1000, lon: 1000 },
+    { name: 'Enemy1', lat: 10, lon: 10 },
+    { name: 'Enemy2', lat: 1000, lon: 1000 },
+    { name: 'Enemy1', lat: 10, lon: 10 },
+    { name: 'Enemy2', lat: 1000, lon: 1000 },
+    { name: 'Enemy1', lat: 10, lon: 10 },
+    { name: 'Enemy2', lat: 1000, lon: 1000 },
+    // Add more enemies as needed
+  ],
+  teleport: [
+    { name: 'Enemy1', lat: -33.2846, lon: -85.2539 },
+    { name: 'Enemy2', lat: -27.9944, lon: -94.2188 },
+    // Add more enemies as needed
+  ],
   coal: [
     { name: 'Enemy1', lat: -33.2846, lon: -85.2539 },
     { name: 'Enemy2', lat: -27.9944, lon: -94.2188 },
@@ -67,6 +85,8 @@ function addMarkers(objects, layer) {
 
 // Create layer groups for each type of game object
 const scoutsLayer = L.layerGroup();
+const ruinsLayer = L.layerGroup();
+const teleportLayer = L.layerGroup();
 const coalLayer = L.layerGroup();
 const ironLayer = L.layerGroup();
 const saltLayer = L.layerGroup();
@@ -75,6 +95,8 @@ const tinLayer = L.layerGroup();
 const sulfurLayer = L.layerGroup();
 // Add markers to respective layers
 addMarkers(gameObjects.scouts, scoutsLayer);
+addMarkers(gameObjects.ruins, scoutsLayer);
+addMarkers(gameObjects.teleport, scoutsLayer);
 addMarkers(gameObjects.coal, scoutsLayer);
 addMarkers(gameObjects.iron, ironLayer);
 addMarkers(gameObjects.salt, saltLayer);
@@ -85,7 +107,9 @@ addMarkers(gameObjects.sulfur, sulfurLayer);
 // Create an object to store the layers
 const overlayMaps = {
   'scouts': scoutsLayer,
-  'ooal': scoutsLayer,
+  'ruins': scoutsLayer,
+  'teleport': scoutsLayer,
+  'coal': scoutsLayer,
   'iron': ironLayer,
   'salt': saltLayer,
   'copper': copperLayer,
