@@ -50,7 +50,7 @@
 
     #menuTableBodyContainer {
         max-height: 500px; /* Adjust height as needed */
-        overflow-y: hidden;
+        overflow-y: auto;
     }
 
     .product-name {
@@ -79,19 +79,16 @@
     }
 
     /* Align headers */
+    th:nth-child(1),
+    td:nth-child(1) {
+        text-align: center;
+    }
+
     th:nth-child(2),
     th:nth-child(3),
     th:nth-child(4) {
         text-align: right;
-    }
-
-    th:first-child {
-        text-align: center;
-    }
-
-    /* Hide scrollbar */
-    #menuTableBodyContainer {
-        overflow: hidden;
+        padding-right: 20px; /* Adjust padding as needed */
     }
 </style>
 </head>
