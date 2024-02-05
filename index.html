@@ -4,6 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Signage Menu</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    #menuTableBodyContainer {
+        max-height: 300px; /* Adjust height as needed */
+        overflow-y: auto;
+    }
+</style>
 </head>
 <body>
 
@@ -17,9 +50,13 @@
                 <th>Potency</th>
             </tr>
         </thead>
-        <tbody id="menuTableBody">
-        </tbody>
     </table>
+    <div id="menuTableBodyContainer">
+        <table id="menuTableBody">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -29,33 +66,35 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&stock_sta
     .catch(error => console.error('Error fetching data:', error));
 
 function populateTable(data) {
-    const tableBody = document.getElementById('menuTableBody');
+    const tableBody = document.getElementById('menuTableBody').getElementsByTagName('tbody')[0];
 
     data.forEach(item => {
         const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
         const row = document.createElement('tr');
-        let strainColor = '';
-        switch(attributes.strain.Value.toLowerCase()) {
-            case 'indica':
-                strainColor = 'red';
-                break;
-            case 'hybrid':
-                strainColor = 'blue';
-                break;
-            case 'sativa':
-                strainColor = 'green';
-                break;
-            default:
-                strainColor = 'black';
-        }
         row.innerHTML = `
             <td>${item.name}</td>
             <td>${item.price}</td>
-            <td><span style="color: ${strainColor};">${attributes.strain.Value}</span></td>
+            <td>${attributes.strain.Value}</td>
             <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
         `;
         tableBody.appendChild(row);
     });
+
+    const tableClone = tableBody.cloneNode(true);
+    tableBody.parentElement.appendChild(tableClone);
+
+    let scrollTop = 0;
+    const scrollHeight = tableBody.scrollHeight;
+
+    function loopScroll() {
+        scrollTop++;
+        if (scrollTop >= scrollHeight) {
+            scrollTop = 0;
+        }
+        document.getElementById('menuTableBodyContainer').scrollTop = scrollTop;
+    }
+
+    setInterval(loopScroll, 50); // Adjust scroll speed as needed
 }
 </script>
 
