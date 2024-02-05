@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Signage Menu</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
     body {
         margin: 0;
@@ -41,7 +41,7 @@
         font-weight: bold;
         text-transform: uppercase;
         font-size: 18px; /* Larger font size for headers */
-        font-family: 'Protest Riot', cursive; /* Use Protest Riot font for headers */
+        font-family: 'Anton', sans-serif; /* Use Anton font for headers */
     }
 
     td {
@@ -50,11 +50,43 @@
 
     #menuTableBodyContainer {
         max-height: 500px; /* Adjust height as needed */
-        overflow-y: hidden; /* Hide vertical scrollbar */
+        overflow-y: auto;
     }
 
     .product-name {
-        font-family: 'Protest Riot', cursive; /* Use Protest Riot font for product names */
+        font-family: 'Anton', sans-serif; /* Use Anton font for product names */
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        top: 3px; /* Adjust the position */
+    }
+
+    .indica-dot {
+        background-color: red;
+    }
+
+    .hybrid-dot {
+        background-color: blue;
+    }
+
+    .sativa-dot {
+        background-color: green;
+    }
+
+    /* Align headers */
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4) {
+        text-align: right;
+    }
+
+    th:first-child {
+        text-align: center;
     }
 </style>
 </head>
@@ -103,11 +135,15 @@ function populateTable(data) {
 
     data.forEach(item => {
         const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
+        const strain = attributes.strain.Value.toLowerCase();
         const row = document.createElement('tr');
         row.innerHTML = `
             <td class="product-name">${item.name}</td>
             <td>$${item.price}</td>
-            <td>${attributes.strain.Value}</td>
+            <td>
+                ${strain}
+                <span class="dot ${strain}-dot"></span>
+            </td>
             <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
         `;
         tableBody.appendChild(row);
