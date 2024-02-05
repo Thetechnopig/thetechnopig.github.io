@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Signage Menu</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
     body {
         margin: 0;
         padding: 0;
@@ -38,7 +40,8 @@
         color: #fff;
         font-weight: bold;
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 18px; /* Larger font size for headers */
+        font-family: 'Protest Riot', cursive; /* Use Protest Riot font for headers */
     }
 
     td {
@@ -48,6 +51,10 @@
     #menuTableBodyContainer {
         max-height: 500px; /* Adjust height as needed */
         overflow-y: auto;
+    }
+
+    .product-name {
+        font-family: 'Protest Riot', cursive; /* Use Protest Riot font for product names */
     }
 </style>
 </head>
@@ -75,7 +82,20 @@
 <script>
 fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
-    .then(data => populateTable(data))
+    .then(data => {
+        data.sort((a, b) => {
+            const strainA = a.meta_data.find(meta => meta.key === 'cova_specifications').value.details.strain.Value.toLowerCase();
+            const strainB = b.meta_data.find(meta => meta.key === 'cova_specifications').value.details.strain.Value.toLowerCase();
+            if (strainA < strainB) {
+                return -1;
+            }
+            if (strainA > strainB) {
+                return 1;
+            }
+            return 0;
+        });
+        populateTable(data);
+    })
     .catch(error => console.error('Error fetching data:', error));
 
 function populateTable(data) {
@@ -85,7 +105,7 @@ function populateTable(data) {
         const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.name}</td>
+            <td class="product-name">${item.name}</td>
             <td>$${item.price}</td>
             <td>${attributes.strain.Value}</td>
             <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
