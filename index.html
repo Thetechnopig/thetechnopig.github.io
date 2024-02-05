@@ -36,7 +36,6 @@
         text-align: left;
         padding: 8px;
         color: #ffffff;
-        position: relative;
     }
 
     th {
@@ -48,28 +47,24 @@
         height: 10px;
         border-radius: 50%;
         display: inline-block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        position: relative;
+        top: 3px; /* Adjust the position */
     }
 
     .indica-dot {
         background-color: red;
-        left: -20px;
     }
 
     .hybrid-dot {
         background-color: blue;
-        left: -20px;
     }
 
     .sativa-dot {
         background-color: green;
-        left: -20px;
     }
 
     #menuTableBody {
-        height: 270px; /* Adjusted height to fit a 53" TV */
+        height: 400px; /* Adjusted height to fit a 53" TV */
         overflow-y: auto;
     }
 
@@ -105,7 +100,7 @@
 </div>
 
 <script>
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=15&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=20&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => populateTable(data))
     .catch(error => console.error('Error fetching data:', error));
@@ -117,14 +112,14 @@ function populateTable(data) {
     function rotateProducts() {
         tableBody.innerHTML = ''; // Clear previous content
 
-        for (let i = 0; i < 15; i++) { // Show 15 products
+        for (let i = 0; i < 20; i++) { // Show 20 products
             const item = data[index % data.length]; // Loop through the products
             const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${item.name} ${getDot(attributes.strain.Value)}</td>
+                <td>${item.name}</td>
                 <td>${item.price}</td>
-                <td>${attributes.strain.Value}</td>
+                <td>${getDot(attributes.strain.Value)} ${attributes.strain.Value}</td>
                 <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
             `;
             tableBody.appendChild(row);
