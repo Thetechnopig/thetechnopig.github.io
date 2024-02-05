@@ -50,7 +50,7 @@
 
     #menuTableBodyContainer {
         max-height: 500px; /* Adjust height as needed */
-        overflow-y: auto;
+        overflow-y: hidden;
     }
 
     .product-name {
@@ -88,6 +88,11 @@
     th:first-child {
         text-align: center;
     }
+
+    /* Hide scrollbar */
+    #menuTableBodyContainer {
+        overflow: hidden;
+    }
 </style>
 </head>
 <body>
@@ -116,8 +121,8 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&stock_sta
     .then(response => response.json())
     .then(data => {
         data.sort((a, b) => {
-            const strainA = a.meta_data.find(meta => meta.key === 'cova_specifications').value.details.strain.Value.toLowerCase();
-            const strainB = b.meta_data.find(meta => meta.key === 'cova_specifications').value.details.strain.Value.toLowerCase();
+            const strainA = a.meta_data.find(meta => meta.key === 'cova_specifications').value.details.strain.Value;
+            const strainB = b.meta_data.find(meta => meta.key === 'cova_specifications').value.details.strain.Value;
             if (strainA < strainB) {
                 return -1;
             }
@@ -135,14 +140,14 @@ function populateTable(data) {
 
     data.forEach(item => {
         const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
-        const strain = attributes.strain.Value.toLowerCase();
+        const strain = attributes.strain.Value;
         const row = document.createElement('tr');
         row.innerHTML = `
             <td class="product-name">${item.name}</td>
             <td>$${item.price}</td>
             <td>
                 ${strain}
-                <span class="dot ${strain}-dot"></span>
+                <span class="dot ${strain.toLowerCase()}-dot"></span>
             </td>
             <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
         `;
