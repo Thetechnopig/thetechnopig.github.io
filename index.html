@@ -13,6 +13,7 @@
         background-position: center;
         font-family: 'Arial', sans-serif;
         color: #ffffff;
+        overflow: hidden;
     }
 
     .container {
@@ -22,6 +23,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
     }
 
     table {
@@ -34,10 +36,54 @@
         text-align: left;
         padding: 8px;
         color: #ffffff;
+        position: relative;
     }
 
     th {
         background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .indica-dot {
+        background-color: red;
+        left: -20px;
+    }
+
+    .hybrid-dot {
+        background-color: blue;
+        left: -20px;
+    }
+
+    .sativa-dot {
+        background-color: green;
+        left: -20px;
+    }
+
+    #menuTableBody {
+        height: 270px; /* Adjusted height to fit a 53" TV */
+        overflow-y: auto;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+
+    #menuTableBody table tr {
+        animation: scroll 20s linear infinite;
     }
 </style>
 </head>
@@ -76,7 +122,7 @@ function populateTable(data) {
             const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${item.name}</td>
+                <td>${item.name} ${getDot(attributes.strain.Value)}</td>
                 <td>${item.price}</td>
                 <td>${attributes.strain.Value}</td>
                 <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
@@ -89,6 +135,19 @@ function populateTable(data) {
     rotateProducts(); // Initial call
 
     setInterval(rotateProducts, 15000); // Rotate every 15 seconds
+
+    function getDot(strain) {
+        switch (strain.toLowerCase()) {
+            case 'indica':
+                return '<span class="dot indica-dot"></span>';
+            case 'hybrid':
+                return '<span class="dot hybrid-dot"></span>';
+            case 'sativa':
+                return '<span class="dot sativa-dot"></span>';
+            default:
+                return '';
+        }
+    }
 }
 </script>
 
