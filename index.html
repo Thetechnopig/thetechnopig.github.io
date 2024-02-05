@@ -62,8 +62,7 @@
         height: 10px;
         border-radius: 50%;
         display: inline-block;
-        position: relative;
-        top: 3px; /* Adjust the position */
+        margin-right: 10px;
     }
 
     .indica-dot {
@@ -140,7 +139,10 @@ function populateTable(data) {
         const strain = attributes.strain.Value;
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="product-name">${item.name}</td>
+            <td>
+                <span class="dot ${strain.toLowerCase()}-dot"></span>
+                <span class="product-name">${item.name}</span>
+            </td>
             <td>$${item.price}</td>
             <td>
                 ${strain}
