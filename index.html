@@ -4,149 +4,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Signage Menu</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-image: url('https://yourbackgroundimageurl.jpg');
-        background-size: cover;
-        background-position: center;
-        font-family: 'Arial', sans-serif;
-        color: #ffffff;
-        overflow: hidden;
-    }
-
-    .container {
-        width: 80%;
-        margin: auto;
-        padding: 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        color: #ffffff;
-    }
-
-    th {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        display: inline-block;
-        position: relative;
-        top: 3px; /* Adjust the position */
-    }
-
-    .indica-dot {
-        background-color: red;
-    }
-
-    .hybrid-dot {
-        background-color: blue;
-    }
-
-    .sativa-dot {
-        background-color: green;
-    }
-
-    #menuTableBodyContainer {
-        height: 400px; /* Adjusted height to fit a 53" TV */
-        overflow-y: hidden; /* hide overflow */
-        position: relative; /* add position */
-    }
-
-    #menuTableBody {
-        animation: scroll 20s linear infinite; /* apply animation */
-        position: absolute; /* make it absolute */
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateY(0);
-        }
-        100% {
-            transform: translateY(-100%);
-        }
-    }
-</style>
 </head>
 <body>
 
 <div class="container">
-    <div id="menuTableBodyContainer"> <!-- Added a container -->
-        <table id="menuTableBody">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Hybrid/Sativa/Indica</th>
-                    <th>Potency</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Hybrid/Sativa/Indica</th>
+                <th>Potency</th>
+            </tr>
+        </thead>
+        <tbody id="menuTableBody">
+        </tbody>
+    </table>
 </div>
 
 <script>
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=20&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => populateTable(data))
     .catch(error => console.error('Error fetching data:', error));
 
 function populateTable(data) {
-    const tableBody = document.querySelector('#menuTableBody tbody');
-    let index = 0;
+    const tableBody = document.getElementById('menuTableBody');
 
-    function rotateProducts() {
-        tableBody.innerHTML = ''; // Clear previous content
-
-        for (let i = 0; i < 20; i++) { // Show 20 products
-            const item = data[index % data.length]; // Loop through the products
-            const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${item.name}</td>
-                <td>${item.price}</td>
-                <td>${getDot(attributes.strain.Value)} ${attributes.strain.Value}</td>
-                <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
-            `;
-            tableBody.appendChild(row);
-            index++;
-        }
-    }
-
-    rotateProducts(); // Initial call
-
-    setInterval(rotateProducts, 15000); // Rotate every 15 seconds
-
-    function getDot(strain) {
-        switch (strain.toLowerCase()) {
+    data.forEach(item => {
+        const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
+        const row = document.createElement('tr');
+        let strainColor = '';
+        switch(attributes.strain.Value.toLowerCase()) {
             case 'indica':
-                return '<span class="dot indica-dot"></span>';
+                strainColor = 'red';
+                break;
             case 'hybrid':
-                return '<span class="dot hybrid-dot"></span>';
+                strainColor = 'blue';
+                break;
             case 'sativa':
-                return '<span class="dot sativa-dot"></span>';
+                strainColor = 'green';
+                break;
             default:
-                return '';
+                strainColor = 'black';
         }
-    }
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td><span style="color: ${strainColor};">${attributes.strain.Value}</span></td>
+            <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
+        `;
+        tableBody.appendChild(row);
+    });
 }
 </script>
 
