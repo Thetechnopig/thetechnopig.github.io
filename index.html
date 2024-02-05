@@ -113,7 +113,7 @@
 </div>
 
 <script>
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data);
