@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Signage Menu</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        background-color: #fff;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: none;
+        text-align: left;
+        padding: 15px;
+    }
+
+    th {
+        background-color: #2c3e50;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 18px; /* Larger font size for headers */
+        font-family: 'Anton', sans-serif; /* Use Anton font for headers */
+    }
+
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #menuTableBodyContainer {
+        max-height: 500px; /* Adjust height as needed */
+        overflow-y: auto;
+    }
+
+    .product-name {
+        font-family: 'Anton', sans-serif; /* Use Anton font for product names */
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .indica-dot {
+        background-color: red;
+    }
+
+    .hybrid-dot {
+        background-color: blue;
+    }
+
+    .sativa-dot {
+        background-color: green;
+    }
+
+    /* Align headers */
+    th:nth-child(1),
+    td:nth-child(1) {
+        text-align: center;
+    }
+
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4) {
+        text-align: right;
+        padding-right: 20px; /* Adjust padding as needed */
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Product Name</th>
+                <th style="width: 25%;">Price</th>
+                <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                <th style="width: 25%;">Potency</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="menuTableBodyContainer">
+        <table id="menuTableBody1">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Product Name</th>
+                <th style="width: 25%;">Price</th>
+                <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                <th style="width: 25%;">Potency</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="menuTableBodyContainer">
+        <table id="menuTableBody2">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Product Name</th>
+                <th style="width: 25%;">Price</th>
+                <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                <th style="width: 25%;">Potency</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="menuTableBodyContainer">
+        <table id="menuTableBody3">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+// Fetch data for table 1
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody1');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+// Fetch data for table 2
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3280&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody2');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+// Fetch data for table 3
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3281&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody3');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+function populateTable(data, tableId) {
+    const tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+
+    data.forEach(item => {
+        const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
+        const strain = attributes.strain.Value;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <span class="dot ${strain.toLowerCase()}-dot"></span>
+                <span class="product-name">${item.name}</span>
+            </td>
+            <td>$${item.price}</td>
+            <td>
+                ${strain}
+                <span class="dot ${strain.toLowerCase()}-dot"></span>
+            </td>
+            <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    const tableClone = tableBody.cloneNode(true);
+    tableBody.parentElement.appendChild(tableClone);
+
+    let scrollTop = 0;
+    const scrollHeight = tableBody.scrollHeight;
+
+    function loopScroll() {
+        scrollTop++;
+        if (scrollTop >= scrollHeight) {
+            scrollTop = 0;
+        }
+        document.getElementById(tableId + 'Container').scrollTop = scrollTop;
+    }
+
+    setInterval(loopScroll, 15); // Adjust scroll speed as needed
+}
+</script>
+
+</body>
+</html>
