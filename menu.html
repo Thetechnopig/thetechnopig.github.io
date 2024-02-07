@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digital Signage Menu</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&display=swap');
 
     body {
         margin: 0;
@@ -33,6 +33,13 @@
 
     .column-c {
         width: 30%;
+    }
+
+    .table-container {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
     }
 
     table {
@@ -106,78 +113,88 @@
 
 <div class="container">
     <div class="column column-a">
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 25%;">Product Name</th>
-                    <th style="width: 25%;">Price</th>
-                    <th style="width: 25%;">Hybrid/Sativa/Indica</th>
-                    <th style="width: 25%;">Potency</th>
-                </tr>
-            </thead>
-        </table>
-        <div id="menuTableBodyContainer">
-            <table id="menuTableBody1">
-                <tbody>
-                </tbody>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Prerolls</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
             </table>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 25%;">Product Name</th>
-                    <th style="width: 25%;">Price</th>
-                    <th style="width: 25%;">Hybrid/Sativa/Indica</th>
-                    <th style="width: 25%;">Potency</th>
-                </tr>
-            </thead>
-        </table>
-        <div id="menuTableBodyContainer">
-            <table id="menuTableBody2">
-                <tbody>
-                </tbody>
+            <div id="menuTableBodyContainer">
+                <table id="menuTableBody1">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Flower</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
             </table>
-        </div>
-    </div>
-    <div class="column"></div>
-    <div class="column">
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 25%;">Product Name</th>
-                    <th style="width: 25%;">Price</th>
-                    <th style="width: 25%;">Hybrid/Sativa/Indica</th>
-                    <th style="width: 25%;">Potency</th>
-                </tr>
-            </thead>
-        </table>
-        <div id="menuTableBodyContainer">
-            <table id="menuTableBody3">
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 25%;">Product Name</th>
-                    <th style="width: 25%;">Price</th>
-                    <th style="width: 25%;">Hybrid/Sativa/Indica</th>
-                    <th style="width: 25%;">Potency</th>
-                </tr>
-            </thead>
-        </table>
-        <div id="menuTableBodyContainer">
-            <table id="menuTableBody4">
-                <tbody>
-                </tbody>
-            </table>
+            <div id="menuTableBodyContainer">
+                <table id="menuTableBody2">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="column"></div>
+    <div class="column column-c">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Vapes</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+            </table>
+            <div id="menuTableBodyContainer">
+                <table id="menuTableBody3">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Edibles</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+            </table>
+            <div id="menuTableBodyContainer">
+                <table id="menuTableBody4">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
+// Function to refresh the page every hour
+function refreshPage() {
+    location.reload();
+}
+// Refresh the page every hour
+setTimeout(refreshPage, 3600000); // 3600000 milliseconds = 1 hour
+
 // Fetch data for table 1
 fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
@@ -187,7 +204,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=
     .catch(error => console.error('Error fetching data:', error));
 
 // Fetch data for table 2
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3280&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=47&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody2');
@@ -195,7 +212,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3280&per_page=
     .catch(error => console.error('Error fetching data:', error));
 
 // Fetch data for table 3
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3281&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=822&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody3');
@@ -203,7 +220,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3281&per_page=
     .catch(error => console.error('Error fetching data:', error));
 
 // Fetch data for table 4
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3282&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=37&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody4');
