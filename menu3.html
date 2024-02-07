@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Signage Menu</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        background-image: url('https://www.whistler.ca/wp-content/uploads/2023/03/Cannabis-plant-image-edited.jpg.webp');
+        background-size: cover;
+    }
+
+    .container {
+        overflow: hidden;
+        margin-top: 30px;
+        display: flex;
+    }
+
+    .column {
+        flex: 1;
+        padding: 0 5px;
+    }
+
+    .table-container {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: none;
+        text-align: left;
+        padding: 15px;
+    }
+
+    th {
+        background-color: #2c3e50;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 18px; /* Larger font size for headers */
+        font-family: 'Anton', sans-serif; /* Use Anton font for headers */
+    }
+
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #menuTableBodyContainer {
+        max-height: 500px; /* Adjust height as needed */
+        overflow-y: auto;
+    }
+
+    .product-name {
+        font-family: 'Anton', sans-serif; /* Use Anton font for product names */
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .indica-dot {
+        background-color: red;
+    }
+
+    .hybrid-dot {
+        background-color: blue;
+    }
+
+    .sativa-dot {
+        background-color: green;
+    }
+
+    /* Align headers */
+    th:nth-child(1),
+    td:nth-child(1) {
+        text-align: center;
+    }
+
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4) {
+        text-align: right;
+        padding-right: 20px; /* Adjust padding as needed */
+    }
+
+    /* Fade animation */
+    .fade-in {
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .fade-out {
+        animation: fadeOut 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="column">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Preroll Name</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTableBody1">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="column">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Flower Name</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTableBody2">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="column">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Product Name</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTableBody3">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="column">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Product Name</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTableBody4">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+// Function to refresh the page every hour
+function refreshPage() {
+    location.reload();
+}
+// Refresh the page every hour
+setTimeout(refreshPage, 3600000); // 3600000 milliseconds = 1 hour
+
+// Fetch data for table 1
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody1');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+// Fetch data for table 2
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=47&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody2');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+// Fetch data for table 3
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=822&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody3');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+// Fetch data for table 4
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=37&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data, 'menuTableBody4');
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+function populateTable(data, tableId) {
+    const tableBody = document.getElementById(tableId);
+
+    let counter = 0;
+    let startIndex = 0;
+
+    function displayNextProducts() {
+        tableBody.innerHTML = '';
+        for (let i = startIndex; i < Math.min(startIndex + 15, data.length); i++) {
+            const item = data[i];
+            const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
+            const strain = attributes.strain.Value;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <span class="dot ${strain.toLowerCase()}-dot"></span>
+                    <span class="product-name">${item.name}</span>
+                </td>
+                <td>${item.price_html}</td>
+                <td>
+                    ${strain}
+                    <span class="dot ${strain.toLowerCase()}-dot"></span>
+                </td>
+                <td>THC Min: ${attributes['thc-min'].Value}% - THC Max: ${attributes['thc-max'].Value}%</td>
+            `;
+            row.classList.add('fade-in');
+            tableBody.appendChild(row);
+            counter++;
+        }
+        if (counter >= data.length) {
+            counter = 0;
+            startIndex = 0;
+        } else {
+            startIndex += 15;
+        }
+    }
+
+    // Initial display
+    displayNextProducts();
+
+    // Interval to display next products
+    setInterval(() => {
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+            row.classList.remove('fade-in');
+            row.classList.add('fade-out');
+        });
+        setTimeout(() => {
+            displayNextProducts();
+        }, 2000); // Adjust fade-out duration as needed
+    }, 5000); // Adjust interval time as needed
+}
+</script>
+
+</body>
+</html>
