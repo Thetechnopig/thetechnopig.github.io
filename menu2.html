@@ -56,7 +56,12 @@
         border-radius: 10px;
         margin-bottom: 20px;
         height: 50vh; /* Set height to 50% of viewport height */
-        overflow-y: auto; /* Add vertical scroll if content overflows */
+        overflow-y: hidden; /* Add vertical scroll if content overflows */
+    }
+
+    /* Ensure content is still accessible */
+    .table-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in Webkit browsers */
     }
 
     table {
@@ -261,18 +266,19 @@ function populateTable(data, tableId) {
 function startAutoScroll(tableId) {
     let scrollTop = 0;
     const table = document.getElementById(tableId);
-    const scrollHeight = table.scrollHeight;
+    const tableContainer = table.parentElement;
 
     function loopScroll() {
         scrollTop++;
-        if (scrollTop >= scrollHeight) {
+        if (scrollTop >= table.scrollHeight - tableContainer.clientHeight) {
             scrollTop = 0;
         }
-        table.scrollTop = scrollTop;
+        tableContainer.scrollTop = scrollTop;
     }
 
     setInterval(loopScroll, 15); // Adjust scroll speed as needed
 }
+
 </script>
 
 </body>
