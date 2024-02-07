@@ -270,10 +270,10 @@ function startAutoScroll(tableId) {
 
     function loopScroll() {
         scrollTop++;
-        if (scrollTop >= tableContainer.scrollHeight - tableContainer.clientHeight) {
+        if (scrollTop >= scrollHeight) {
             scrollTop = 0;
         }
-        tableContainer.scrollTop = scrollTop;
+        document.getElementById('menuTableBodyContainer').scrollTop = scrollTop;
     }
 
     setInterval(loopScroll, 15); // Adjust scroll speed as needed
