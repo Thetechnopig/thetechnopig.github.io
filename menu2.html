@@ -194,30 +194,34 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody1');
+        startAutoScroll('menuTableBody1');
     })
     .catch(error => console.error('Error fetching data:', error));
 
 // Fetch data for table 2
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3280&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=47&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody2');
+        startAutoScroll('menuTableBody2');
     })
     .catch(error => console.error('Error fetching data:', error));
 
 // Fetch data for table 3
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3281&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=822&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody3');
+        startAutoScroll('menuTableBody3');
     })
     .catch(error => console.error('Error fetching data:', error));
 
 // Fetch data for table 4
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3282&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
+fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=37&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody4');
+        startAutoScroll('menuTableBody4');
     })
     .catch(error => console.error('Error fetching data:', error));
 
@@ -245,16 +249,19 @@ function populateTable(data, tableId) {
 
     const tableClone = tableBody.cloneNode(true);
     tableBody.parentElement.appendChild(tableClone);
+}
 
+function startAutoScroll(tableId) {
     let scrollTop = 0;
-    const scrollHeight = tableBody.scrollHeight;
+    const table = document.getElementById(tableId);
+    const scrollHeight = table.scrollHeight;
 
     function loopScroll() {
         scrollTop++;
         if (scrollTop >= scrollHeight) {
             scrollTop = 0;
         }
-        document.getElementById(tableId).scrollTop = scrollTop;
+        table.scrollTop = scrollTop;
     }
 
     setInterval(loopScroll, 15); // Adjust scroll speed as needed
