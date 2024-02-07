@@ -10,7 +10,7 @@
     body {
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
+        font-family: 'Fraunces', serif;
         background-color: #f5f5f5;
         background-image: url('https://www.whistler.ca/wp-content/uploads/2023/03/Cannabis-plant-image-edited.jpg.webp');
         background-size: cover;
@@ -138,9 +138,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Preroll Name</th>
+                        <th style="width: 25%;">Prerolls</th>
                         <th style="width: 25%;">Price</th>
-                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Type</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
@@ -154,9 +154,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Flower Name</th>
+                        <th style="width: 25%;">Flower</th>
                         <th style="width: 25%;">Price</th>
-                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Type</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
@@ -170,9 +170,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Product Name</th>
+                        <th style="width: 25%;">Vapes</th>
                         <th style="width: 25%;">Price</th>
-                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Type</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
@@ -186,9 +186,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Product Name</th>
+                        <th style="width: 25%;">Concentrates</th>
                         <th style="width: 25%;">Price</th>
-                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Type</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
@@ -208,38 +208,27 @@ function refreshPage() {
 setTimeout(refreshPage, 3600000); // 3600000 milliseconds = 1 hour
 
 // Fetch data for table 1
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
-    .then(response => response.json())
-    .then(data => {
-        populateTable(data, 'menuTableBody1');
-    })
-    .catch(error => console.error('Error fetching data:', error));
+fetchData('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f', 'menuTableBody1', 8);
 
 // Fetch data for table 2
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=47&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
-    .then(response => response.json())
-    .then(data => {
-        populateTable(data, 'menuTableBody2');
-    })
-    .catch(error => console.error('Error fetching data:', error));
+fetchData('https://rollingcannabis.co/wp-json/wc/v3/products?category=47&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f', 'menuTableBody2', 8);
 
 // Fetch data for table 3
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=822&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
-    .then(response => response.json())
-    .then(data => {
-        populateTable(data, 'menuTableBody3');
-    })
-    .catch(error => console.error('Error fetching data:', error));
+fetchData('https://rollingcannabis.co/wp-json/wc/v3/products?category=822&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f', 'menuTableBody3', 8);
 
 // Fetch data for table 4
-fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=37&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f')
-    .then(response => response.json())
-    .then(data => {
-        populateTable(data, 'menuTableBody4');
-    })
-    .catch(error => console.error('Error fetching data:', error));
+fetchData('https://rollingcannabis.co/wp-json/wc/v3/products?category=40&per_page=100&stock_status=instock&consumer_key=ck_e598c1cbbc0622d95a7ffb24e3c0448ef048f7c1&consumer_secret=cs_de6cc9841952d170e47a053702c8fdc94e7f436f', 'menuTableBody4', 8);
 
-function populateTable(data, tableId) {
+function fetchData(url, tableId, numProducts) {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            populateTable(data, tableId, numProducts);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function populateTable(data, tableId, numProducts) {
     const tableBody = document.getElementById(tableId);
 
     let counter = 0;
@@ -247,7 +236,7 @@ function populateTable(data, tableId) {
 
     function displayNextProducts() {
         tableBody.innerHTML = '';
-        for (let i = startIndex; i < Math.min(startIndex + 15, data.length); i++) {
+        for (let i = startIndex; i < Math.min(startIndex + numProducts, data.length); i++) {
             const item = data[i];
             const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
             const strain = attributes.strain.Value;
@@ -272,7 +261,7 @@ function populateTable(data, tableId) {
             counter = 0;
             startIndex = 0;
         } else {
-            startIndex += 15;
+            startIndex += numProducts;
         }
     }
 
