@@ -10,11 +10,11 @@
     body {
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
+        font-family: 'Fraunces', serif;
         background-color: #f5f5f5;
         background-image: url('https://www.whistler.ca/wp-content/uploads/2023/03/Cannabis-plant-image-edited.jpg.webp');
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: auto;
     }
 
     .container {
@@ -56,12 +56,7 @@
         border-radius: 10px;
         margin-bottom: 20px;
         height: 50vh; /* Set height to 50% of viewport height */
-        overflow-y: hidden; /* Add vertical scroll if content overflows */
-    }
-
-    /* Ensure content is still accessible */
-    .table-container::-webkit-scrollbar {
-        display: none; /* Hide scrollbar in Webkit browsers */
+        overflow-y: auto; /* Add vertical scroll if content overflows */
     }
 
     table {
@@ -144,20 +139,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Flower</th>
-                        <th style="width: 25%;">Price</th>
-                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
-                        <th style="width: 25%;">Potency</th>
-                    </tr>
-                </thead>
-                <tbody id="menuTableBody2">
-                </tbody>
-            </table>
-        </div>
     </div>
     <div class="column column-b"></div>
     <div class="column column-c">
@@ -171,10 +152,12 @@
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
-                <tbody id="menuTableBody3">
+                <tbody id="menuTableBody2">
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="column column-d">
         <div class="table-container">
             <table>
                 <thead>
@@ -185,12 +168,11 @@
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
-                <tbody id="menuTableBody4">
+                <tbody id="menuTableBody3">
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="column column-d"></div>
 </div>
 
 <script>
@@ -206,7 +188,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=3279&per_page=
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody1');
-        startAutoScroll('menuTableBody1'); // Start autoscroll after populating table
+        startAutoScroll('menuTableBody1'); // Start autoscroll for table 1
     })
     .catch(error => console.error('Error fetching data:', error));
 
@@ -215,7 +197,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=47&per_page=10
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody2');
-        startAutoScroll('menuTableBody2'); // Start autoscroll after populating table
+        startAutoScroll('menuTableBody2'); // Start autoscroll for table 2
     })
     .catch(error => console.error('Error fetching data:', error));
 
@@ -224,7 +206,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=822&per_page=1
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody3');
-        startAutoScroll('menuTableBody3'); // Start autoscroll after populating table
+        startAutoScroll('menuTableBody3'); // Start autoscroll for table 3
     })
     .catch(error => console.error('Error fetching data:', error));
 
@@ -233,7 +215,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=37&per_page=10
     .then(response => response.json())
     .then(data => {
         populateTable(data, 'menuTableBody4');
-        startAutoScroll('menuTableBody4'); // Start autoscroll after populating table
+        startAutoScroll('menuTableBody4'); // Start autoscroll for table 4
     })
     .catch(error => console.error('Error fetching data:', error));
 
@@ -270,16 +252,14 @@ function startAutoScroll(tableId) {
 
     function loopScroll() {
         scrollTop++;
-        if (scrollTop >= scrollHeight) {
+        if (scrollTop >= tableContainer.scrollHeight - tableContainer.clientHeight) {
             scrollTop = 0;
         }
-        document.getElementById('menuTableBodyContainer').scrollTop = scrollTop;
+        tableContainer.scrollTop = scrollTop;
     }
 
     setInterval(loopScroll, 15); // Adjust scroll speed as needed
 }
-
-    
 </script>
 
 </body>
