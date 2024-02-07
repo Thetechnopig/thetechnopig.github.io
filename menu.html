@@ -31,8 +31,16 @@
         width: 30%;
     }
 
+    .column-b {
+        width: 20%;
+    }
+
     .column-c {
         width: 30%;
+    }
+
+    .column-d {
+        width: 20%;
     }
 
     .table-container {
@@ -117,74 +125,63 @@
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Prerolls</th>
+                        <th style="width: 25%;">Product Name</th>
                         <th style="width: 25%;">Price</th>
                         <th style="width: 25%;">Hybrid/Sativa/Indica</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
+                <tbody id="menuTableBody1">
+                </tbody>
             </table>
-            <div id="menuTableBodyContainer">
-                <table id="menuTableBody1">
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+        </div>
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Flower</th>
+                        <th style="width: 25%;">Product Name</th>
                         <th style="width: 25%;">Price</th>
                         <th style="width: 25%;">Hybrid/Sativa/Indica</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
+                <tbody id="menuTableBody2">
+                </tbody>
             </table>
-            <div id="menuTableBodyContainer">
-                <table id="menuTableBody2">
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
-    <div class="column"></div>
+    <div class="column column-b"></div>
     <div class="column column-c">
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Vapes</th>
+                        <th style="width: 25%;">Product Name</th>
                         <th style="width: 25%;">Price</th>
                         <th style="width: 25%;">Hybrid/Sativa/Indica</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
+                <tbody id="menuTableBody3">
+                </tbody>
             </table>
-            <div id="menuTableBodyContainer">
-                <table id="menuTableBody3">
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+        </div>
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Edibles</th>
+                        <th style="width: 25%;">Product Name</th>
                         <th style="width: 25%;">Price</th>
                         <th style="width: 25%;">Hybrid/Sativa/Indica</th>
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
+                <tbody id="menuTableBody4">
+                </tbody>
             </table>
-            <div id="menuTableBodyContainer">
-                <table id="menuTableBody4">
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
+    <div class="column column-d"></div>
 </div>
 
 <script>
@@ -228,7 +225,7 @@ fetch('https://rollingcannabis.co/wp-json/wc/v3/products?category=37&per_page=10
     .catch(error => console.error('Error fetching data:', error));
 
 function populateTable(data, tableId) {
-    const tableBody = document.getElementById(tableId).getElementsByTagName('tbody')[0];
+    const tableBody = document.getElementById(tableId);
 
     data.forEach(item => {
         const attributes = item.meta_data.find(meta => meta.key === 'cova_specifications').value.details;
@@ -260,7 +257,7 @@ function populateTable(data, tableId) {
         if (scrollTop >= scrollHeight) {
             scrollTop = 0;
         }
-        document.getElementById(tableId + 'Container').scrollTop = scrollTop;
+        document.getElementById(tableId).scrollTop = scrollTop;
     }
 
     setInterval(loopScroll, 15); // Adjust scroll speed as needed
