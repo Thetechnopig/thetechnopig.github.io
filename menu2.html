@@ -10,7 +10,7 @@
     body {
         margin: 0;
         padding: 0;
-        font-family: 'Fraunces', serif;
+        font-family: Arial, sans-serif;
         background-color: #f5f5f5;
         background-image: url('https://www.whistler.ca/wp-content/uploads/2023/03/Cannabis-plant-image-edited.jpg.webp');
         background-repeat: no-repeat;
@@ -23,31 +23,9 @@
     }
 
     .column {
-        width: 20%;
+        width: 25%; /* Adjusted column width to accommodate all four tables */
         float: left;
         padding: 0 5px;
-    }
-
-    .column-a {
-        width: 30%;
-        margin-bottom: 20px;
-        margin-right: 50px;
-    }
-
-    .column-b {
-        width: 20%;
-        margin-bottom: 20px;
-    }
-
-    .column-c {
-        width: 30%;
-        margin-bottom: 20px;
-        margin-right: 50px;
-    }
-
-    .column-d {
-        width: 20%;
-        margin-bottom: 20px;
     }
 
     .table-container {
@@ -124,7 +102,7 @@
 <body>
 
 <div class="container">
-    <div class="column column-a">
+    <div class="column">
         <div class="table-container">
             <table>
                 <thead>
@@ -140,13 +118,12 @@
             </table>
         </div>
     </div>
-    <div class="column column-b"></div>
-    <div class="column column-c">
+    <div class="column">
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 25%;">Vapes</th>
+                        <th style="width: 25%;">Flower</th>
                         <th style="width: 25%;">Price</th>
                         <th style="width: 25%;">Hybrid/Sativa/Indica</th>
                         <th style="width: 25%;">Potency</th>
@@ -157,7 +134,23 @@
             </table>
         </div>
     </div>
-    <div class="column column-d">
+    <div class="column">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Vapes</th>
+                        <th style="width: 25%;">Price</th>
+                        <th style="width: 25%;">Hybrid/Sativa/Indica</th>
+                        <th style="width: 25%;">Potency</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTableBody3">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="column">
         <div class="table-container">
             <table>
                 <thead>
@@ -168,7 +161,7 @@
                         <th style="width: 25%;">Potency</th>
                     </tr>
                 </thead>
-                <tbody id="menuTableBody3">
+                <tbody id="menuTableBody4">
                 </tbody>
             </table>
         </div>
