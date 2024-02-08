@@ -17,33 +17,22 @@
     }
 
     .container {
-        overflow: hidden;
-        margin-top: 30px;
-        display: flex;
+        display: flex; /* Use flexbox */
         flex-wrap: wrap; /* Allow flex items to wrap */
-        justify-content: center; /* Center flex items horizontally */
-    }
-
-    .column {
-        flex: 0 0 calc(50% - 20px); /* Two columns for larger screens */
-        max-width: calc(50% - 20px); /* Two columns for larger screens */
-        padding: 0 10px;
-        margin-bottom: 20px;
-    }
-
-    @media screen and (max-width: 768px) {
-        .column {
-            flex: 0 0 calc(100% - 20px); /* Full width for smaller screens */
-            max-width: calc(100% - 20px); /* Full width for smaller screens */
-        }
+        justify-content: space-between; /* Distribute space between flex items */
+        margin: 30px auto; /* Center the container */
+        max-width: 1200px; /* Limit maximum width */
     }
 
     .table-container {
         background-color: #fff;
         padding: 10px;
         border-radius: 10px;
-        position: relative;
+        margin-bottom: 20px;
         overflow: hidden;
+        flex-grow: 1; /* Allow each table container to grow */
+        flex-basis: calc(25% - 20px); /* Set initial width for each table container */
+        max-width: calc(25% - 20px); /* Set maximum width for each table container */
     }
 
     table {
@@ -141,8 +130,8 @@
 <body>
 
 <div class="container">
-    <div class="column">
-        <div class="table-container">
+    <div class="table-container">
+        <div class="table-container-inner">
             <table>
                 <thead>
                     <tr>
@@ -157,8 +146,8 @@
             </table>
         </div>
     </div>
-    <div class="column">
-        <div class="table-container">
+    <div class="table-container">
+        <div class="table-container-inner">
             <table>
                 <thead>
                     <tr>
@@ -173,8 +162,8 @@
             </table>
         </div>
     </div>
-    <div class="column">
-        <div class="table-container">
+    <div class="table-container">
+        <div class="table-container-inner">
             <table>
                 <thead>
                     <tr>
@@ -189,8 +178,8 @@
             </table>
         </div>
     </div>
-    <div class="column">
-        <div class="table-container">
+    <div class="table-container">
+        <div class="table-container-inner">
             <table>
                 <thead>
                     <tr>
