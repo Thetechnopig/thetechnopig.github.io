@@ -3,24 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osu! Clone</title>
+    <title>Operation Tempest's Fury: Battle Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #111;
+            font-family: 'Roboto', sans-serif;
         }
-        canvas {
-            border: 2px solid white;
+        .flow-arrow::after {
+            content: '▼';
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #2C3E50;
+        }
+        .contingency-card {
+            border-left: 5px solid #E74C3C;
         }
     </style>
 </head>
-<body>
-    <canvas id="gameCanvas"></canvas>
-    <script src="game.js"></script>
+<body class="bg-[#F2F2F2]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#2C3E50] uppercase tracking-wider">Operation Tempest's Fury</h1>
+            <p class="text-lg md:text-xl text-[#34495E] mt-2">Phase III & IV: Beachhead Consolidation & Contingency Protocols</p>
+        </header>
+
+        <main>
+            <section id="phase-three" class="mb-16">
+                <h2 class="text-3xl font-bold text-[#2C3E50] text-center mb-8">Phase III: Consolidation & Push</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    
+                    <div class="bg-white rounded-lg shadow-xl p-6 text-center flex flex-col items-center h-full">
+                        <div class="text-5xl mb-4">🛡️</div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">1. Secure the Beachhead</h3>
+                        <p class="text-gray-600">The first priority is to clear the immediate landing area of all enemy resistance. Engineers must immediately begin constructing defenses like pillboxes, foxholes, and barbed wire to fortify the position against counter-attacks.</p>
+                    </div>
+
+                    <div class="text-center hidden md:flex flex-col items-center justify-center pt-16">
+                        <div class="flow-arrow"></div>
+                    </div>
+                    
+                     <div class="text-center flex md:hidden flex-col items-center justify-center py-4">
+                        <div class="flow-arrow"></div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 text-center flex flex-col items-center h-full">
+                        <div class="text-5xl mb-4">📦</div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">2. Establish Logistics Hub</h3>
+                        <p class="text-gray-600">Logistics gunboats and cargo craft will begin unloading supplies. A centralized logistical hub must be established on the beach to provide easy access to ammunition, medical supplies, and building materials for sustained operations.</p>
+                    </div>
+
+                    <div class="text-center hidden md:flex flex-col items-center justify-center pt-16">
+                         <div class="flow-arrow"></div>
+                    </div>
+                    
+                    <div class="text-center flex md:hidden flex-col items-center justify-center py-4">
+                        <div class="flow-arrow"></div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 text-center flex flex-col items-center h-full">
+                        <div class="text-5xl mb-4">🏹</div>
+                        <h3 class="text-xl font-bold text-[#2C3E50] mb-2">3. Advance Inland</h3>
+                        <p class="text-gray-600">Once the beachhead is secure and the supply line is stable, the assault team will push inland to capture the primary objective. Gunboats will provide continuous flanking fire support from the coast to suppress enemy positions during the advance.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="bg-white rounded-lg shadow-2xl p-6 md:p-8 mb-16">
+                <h3 class="text-2xl font-bold text-[#2C3E50] text-center mb-4">Beachhead Supply Priorities</h3>
+                <p class="text-center text-gray-600 mb-6">Successful consolidation depends on a steady flow of critical supplies. The chart below illustrates the required allocation priority for materials being unloaded at the beachhead logisitcal hub.</p>
+                <div class="chart-container relative w-full h-80 md:h-96 max-w-4xl mx-auto">
+                    <canvas id="supplyChart"></canvas>
+                </div>
+            </div>
+
+            <section id="naval-tactics" class="mb-16">
+                <h2 class="text-3xl font-bold text-[#2C3E50] text-center mb-8">Naval Engagement Tactics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    
+                    <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col items-start h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">🧑‍🚀</div>
+                            <h3 class="text-xl font-bold text-[#2C3E50]">Crew & Armament Analysis</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>A minimum of four crew is recommended per gunboat. More crew members are highly desirable to replace any fallen personnel during combat.</li>
+                            <li>The Typhon gun is a superior choice for anti-personnel and consistent damage. It cannot bounce and provides more reliable DPS than the Daucus.</li>
+                            <li>The Daucus remains the preferred weapon for destroying structures due to its high burst damage.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col items-start h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">🎯</div>
+                            <h3 class="text-xl font-bold text-[#2C3E50]">Tactical Maneuvers</h3>
+                        </div>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>The primary goal is not to sink the enemy vessel, but to disable it. A targeted volley on the helmsman will render the boat a sitting duck.</li>
+                            <li>Always engage enemy gunboats from the side. Their auxiliary guns have a limited arc and face the forward and rear, leaving them vulnerable to flanking maneuvers.</li>
+                            <li>The Warden boat is faster and more agile. If they attempt to disengage and flee, do not give chase. Instead, reposition to engage them on your own terms when they are at a disadvantage.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <section id="contingencies">
+                <h2 class="text-3xl font-bold text-[#2C3E50] text-center mb-8">Phase IV: Contingency Plans</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 contingency-card">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">💥</div>
+                            <h3 class="text-xl font-bold text-[#C0392B]">High Resistance</h3>
+                        </div>
+                        <p class="text-gray-700">If the landing is met with unexpectedly heavy resistance, the assault team will fall back to the Landing Craft. Gunboats will pull back, intensify their bombardment on the landing zone, and an alternate landing site will be selected.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 contingency-card">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">🚢</div>
+                            <h3 class="text-xl font-bold text-[#C0392B]">Gunboat Loss</h3>
+                        </div>
+                        <p class="text-gray-700">If a Gunboat is lost, its surviving crew will be recovered by a nearby Landing Craft. The mission will proceed with reduced firepower. Remaining gunboats must be more conservative with their ammunition expenditure for the duration of the assault.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-xl p-6 contingency-card md:col-span-2 lg:col-span-1">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">❗</div>
+                            <h3 class="text-xl font-bold text-[#C0392B]">Logistical Breakdown</h3>
+                        </div>
+                        <p class="text-gray-700">If the main logistics gunboat is sunk, the mission is immediately compromised. The operational priority will shift to securing any captured enemy supplies and dispatching a messenger back to base for emergency resupply.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const supplyCtx = document.getElementById('supplyChart').getContext('2d');
+        const supplyChart = new Chart(supplyCtx, {
+            type: 'bar',
+            data: {
+                labels: [['Typhon/Daucus', 'Ammo'], 'Mortar Shells', ['Garrison', 'Supplies'], 'Small Arms', 'Medical Supplies'],
+                datasets: [{
+                    label: 'Supply Priority',
+                    data: [100, 85, 70, 60, 50],
+                    backgroundColor: [
+                        '#E74C3C',
+                        '#3498DB',
+                        '#F1C40F',
+                        '#2ECC71',
+                        '#9B59B6'
+                    ],
+                    borderColor: [
+                        '#c0392b',
+                        '#2980b9',
+                        '#f39c12',
+                        '#27ae60',
+                        '#8e44ad'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e0e0e0'
+                        },
+                        ticks: {
+                           font: {
+                               weight: 'bold'
+                           }
+                        }
+                    },
+                    y: {
+                       grid: {
+                            display: false
+                        },
+                       ticks: {
+                           font: {
+                               weight: 'bold',
+                               size: 14,
+                           }
+                       }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
