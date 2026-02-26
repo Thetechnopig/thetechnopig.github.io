@@ -1,0 +1,24 @@
+.activities-list {
+  display: grid;
+  gap: 30px;
+}
+
+.activity-item {
+  background-color: var(--bg-oxford-blue-alpha-90);
+  padding: 30px;
+  border-radius: var(--radius-5);
+  box-shadow: var(--shadow);
+}
+
+.activity-title {
+  color: var(--text-white);
+  font-size: var(--fontSize-3);
+  font-weight: var(--weight-semiBold);
+  margin-bottom: 15px;
+}
+
+.activity-text {
+  color: var(--text-gainsboro);
+  font-size: var(--fontSize-5);
+  line-height: 1.8;
+}
